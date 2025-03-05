@@ -1,8 +1,25 @@
+
 import SectionHeading from "../common/SectionHeading";
 import AnimatedCard from "../common/AnimatedCard";
 import { LinkedinIcon, Github, Mail } from "lucide-react";
 
-const teamMembers = [
+interface TeamMember {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  socialLinks?: {
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+  };
+}
+
+interface OurTeamProps {
+  teamMembers?: TeamMember[];
+}
+
+const defaultTeamMembers = [
   {
     name: "Mayur Bodkhe",
     role: "Founder & CEO",
@@ -23,7 +40,7 @@ const teamMembers = [
   },
 ];
 
-const OurTeam = () => {
+const OurTeam = ({ teamMembers = defaultTeamMembers }: OurTeamProps) => {
   return (
     <section className="section-padding bg-tvm-lightGray">
       <div className="container-custom">
@@ -48,13 +65,17 @@ const OurTeam = () => {
                   <p className="text-tvm-blue font-medium mb-4">{member.role}</p>
                   <p className="text-tvm-gray mb-6">{member.bio}</p>
                   <div className="flex space-x-3">
-                    <a href="#" className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
-                      <LinkedinIcon size={18} />
-                    </a>
-                    <a href="#" className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
-                      <Github size={18} />
-                    </a>
-                    <a href="#" className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
+                    {member.socialLinks?.linkedin && (
+                      <a href={member.socialLinks.linkedin} className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
+                        <LinkedinIcon size={18} />
+                      </a>
+                    )}
+                    {member.socialLinks?.github && (
+                      <a href={member.socialLinks.github} className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
+                        <Github size={18} />
+                      </a>
+                    )}
+                    <a href={`mailto:${member.email || ''}`} className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
                       <Mail size={18} />
                     </a>
                   </div>

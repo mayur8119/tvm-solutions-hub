@@ -8,9 +8,12 @@ interface ServiceDetailProps {
   title: string;
   description: string;
   features: string[];
-  icon: ReactNode;
-  image: string;
+  icon?: ReactNode;
+  image?: string;
+  imageSrc?: string; // Added this prop
+  imageAlt?: string; // Added this prop
   reversed?: boolean;
+  isReversed?: boolean; // Added this prop
 }
 
 const ServiceDetail = ({
@@ -20,17 +23,24 @@ const ServiceDetail = ({
   features,
   icon,
   image,
+  imageSrc, // Use either image or imageSrc
+  imageAlt,
   reversed = false,
+  isReversed = false, // Use either reversed or isReversed
 }: ServiceDetailProps) => {
+  // Use the appropriate props (supporting both naming conventions)
+  const imageSource = image || imageSrc;
+  const isReversedLayout = reversed || isReversed;
+  
   return (
     <section id={id} className="py-20 scroll-mt-20">
       <div className="container-custom">
-        <div className={`flex flex-col lg:flex-row items-center gap-12 ${reversed ? 'lg:flex-row-reverse' : ''}`}>
+        <div className={`flex flex-col lg:flex-row items-center gap-12 ${isReversedLayout ? 'lg:flex-row-reverse' : ''}`}>
           {/* Content */}
           <div className="w-full lg:w-1/2">
             <AnimatedCard>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="text-tvm-blue">{icon}</div>
+                {icon && <div className="text-tvm-blue">{icon}</div>}
                 <h2 className="text-3xl font-medium">{title}</h2>
               </div>
               <p className="text-tvm-gray text-lg mb-8">{description}</p>
@@ -51,8 +61,8 @@ const ServiceDetail = ({
             <AnimatedCard delay={200}>
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <img
-                  src={image}
-                  alt={title}
+                  src={imageSource}
+                  alt={imageAlt || title}
                   className="w-full h-auto object-cover"
                 />
               </div>
