@@ -1,7 +1,6 @@
-
 import SectionHeading from "../common/SectionHeading";
 import AnimatedCard from "../common/AnimatedCard";
-import { LinkedinIcon, GitHub, Mail } from "lucide-react";
+import { LinkedinIcon, Github, Mail } from "lucide-react";
 
 const teamMembers = [
   {
@@ -53,7 +52,7 @@ const OurTeam = () => {
                       <LinkedinIcon size={18} />
                     </a>
                     <a href="#" className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
-                      <GitHub size={18} />
+                      <Github size={18} />
                     </a>
                     <a href="#" className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
                       <Mail size={18} />
