@@ -8,6 +8,7 @@ interface TeamMember {
   role: string;
   bio: string;
   image: string;
+  email?: string; // Added optional email property
   socialLinks?: {
     twitter?: string;
     linkedin?: string;
@@ -75,7 +76,7 @@ const OurTeam = ({ teamMembers = defaultTeamMembers }: OurTeamProps) => {
                         <Github size={18} />
                       </a>
                     )}
-                    <a href={`mailto:${member.email || ''}`} className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
+                    <a href={`mailto:${member.email || 'info@tvmitsolutions.com'}`} className="p-2 bg-tvm-blue/10 text-tvm-blue rounded-full hover:bg-tvm-blue hover:text-white transition-colors">
                       <Mail size={18} />
                     </a>
                   </div>
