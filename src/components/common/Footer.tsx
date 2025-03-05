@@ -100,16 +100,16 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="text-tvm-blue mt-1 flex-shrink-0" />
                 <span className="text-gray-300">
-                  123 Business Avenue, Tech Park, Maharashtra, India
+                  Chandan Apartment, Rana Nagar, Seven Hills, CIDCO, Aurangabad, Maharashtra, India
                 </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-tvm-blue flex-shrink-0" />
-                <span className="text-gray-300">+91 98765 43210</span>
+                <span className="text-gray-300">+91 9309917269 / +91 9730031264</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-tvm-blue flex-shrink-0" />
-                <span className="text-gray-300">info@tvmitsolutions.com</span>
+                <span className="text-gray-300">mayurbodkhe7918@gmail.com</span>
               </li>
             </ul>
           </div>
