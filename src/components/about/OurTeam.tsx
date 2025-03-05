@@ -54,11 +54,12 @@ const OurTeam = ({ teamMembers = defaultTeamMembers }: OurTeamProps) => {
           {teamMembers.map((member, index) => (
             <AnimatedCard key={index} delay={index * 100}>
               <div className="glassmorphism rounded-xl overflow-hidden h-full card-hover">
-                <div className="h-64 overflow-hidden">
+                <div className="h-64 overflow-hidden relative bg-gray-100">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 absolute inset-0"
+                    style={{ objectPosition: "center top" }}
                   />
                 </div>
                 <div className="p-6">
