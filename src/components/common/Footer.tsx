@@ -15,7 +15,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/d3c6ba39-b736-4a64-9d5f-2236e85b3f83.png" 
                 alt="TVM IT Solutions Logo" 
-                className="h-12 w-auto"
+                className="h-16 w-auto" // Increased from h-12 to h-16
               />
             </div>
             <p className="text-gray-300 mb-4">
