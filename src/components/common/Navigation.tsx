@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
@@ -60,8 +60,14 @@ const Navigation = () => {
               {item.name}
             </Link>
           ))}
-          <Button className="ml-2" size="sm">
-            Get Started
+          <Link to="/login">
+            <Button variant="outline" size="sm" className="ml-2">
+              <User size={16} className="mr-2" />
+              Login
+            </Button>
+          </Link>
+          <Button className="ml-2" size="sm" onClick={() => window.location.href = '/login?signup=true'}>
+            Sign Up
           </Button>
         </nav>
 
@@ -95,9 +101,17 @@ const Navigation = () => {
               {item.name}
             </Link>
           ))}
-          <Button className="mt-2 w-full" size="sm">
-            Get Started
-          </Button>
+          <Link to="/login" className="w-full">
+            <Button variant="outline" className="w-full flex items-center justify-center" size="sm">
+              <User size={16} className="mr-2" />
+              Login
+            </Button>
+          </Link>
+          <Link to="/login?signup=true" className="w-full">
+            <Button className="w-full" size="sm">
+              Sign Up
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
