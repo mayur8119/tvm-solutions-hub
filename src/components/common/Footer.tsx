@@ -11,9 +11,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-2xl font-bold text-tvm-blue">TVM</span>
-              <span className="text-xl font-medium">IT Solutions</span>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/d3c6ba39-b736-4a64-9d5f-2236e85b3f83.png" 
+                alt="TVM IT Solutions Logo" 
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-gray-300 mb-4">
               Transforming businesses through innovative IT solutions and cutting-edge technologies.

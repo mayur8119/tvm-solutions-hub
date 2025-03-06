@@ -37,9 +37,12 @@ const Navigation = () => {
       }`}
     >
       <div className="container-custom flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-tvm-blue">TVM</span>
-          <span className="text-xl font-medium">IT Solutions</span>
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/lovable-uploads/d3c6ba39-b736-4a64-9d5f-2236e85b3f83.png" 
+            alt="TVM IT Solutions Logo" 
+            className="h-12 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
