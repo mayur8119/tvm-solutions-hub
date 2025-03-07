@@ -3,6 +3,7 @@ import PageLayout from "@/components/common/PageLayout";
 import ContactHero from "@/components/contact/ContactHero";
 import ContactForm from "@/components/contact/ContactForm";
 import MapSection from "@/components/contact/MapSection";
+import { Toaster } from "@/components/ui/toaster";
 
 const ContactPage = () => {
   return (
@@ -16,6 +17,7 @@ const ContactPage = () => {
           email="mayurbodkhe7918@gmail.com"
         />
       </div>
+      <Toaster />
     </PageLayout>
   );
 };

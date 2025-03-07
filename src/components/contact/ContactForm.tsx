@@ -4,6 +4,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -96,7 +98,7 @@ const ContactForm = () => {
                 <Phone className="flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h3 className="font-medium">Phone</h3>
-                  <p className="text-blue-100">+91 98765 43210</p>
+                  <p className="text-blue-100">+91 9309917269 / +91 9730031264</p>
                 </div>
               </div>
               
@@ -104,7 +106,7 @@ const ContactForm = () => {
                 <Mail className="flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h3 className="font-medium">Email</h3>
-                  <p className="text-blue-100">info@tvmitsolutions.com</p>
+                  <p className="text-blue-100">mayurbodkhe7918@gmail.com</p>
                 </div>
               </div>
               
@@ -113,7 +115,7 @@ const ContactForm = () => {
                 <div>
                   <h3 className="font-medium">Address</h3>
                   <p className="text-blue-100">
-                    123 Business Avenue, Tech Park, Maharashtra, India
+                    Chandan Apartment, Rana Nagar, Seven Hills, CIDCO, Aurangabad, Maharashtra, India
                   </p>
                 </div>
               </div>
@@ -153,73 +155,73 @@ const ContactForm = () => {
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block mb-2 text-sm font-medium">
+                  <Label htmlFor="name">
                     Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-tvm-blue focus:border-transparent"
+                    className="mt-1"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium">
+                  <Label htmlFor="email">
                     Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-tvm-blue focus:border-transparent"
+                    className="mt-1"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block mb-2 text-sm font-medium">
+                  <Label htmlFor="phone">
                     Phone Number
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-tvm-blue focus:border-transparent"
+                    className="mt-1"
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block mb-2 text-sm font-medium">
+                  <Label htmlFor="subject">
                     Subject <span className="text-red-500">*</span>
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="text"
                     id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-tvm-blue focus:border-transparent"
+                    className="mt-1"
                     required
                   />
                 </div>
               </div>
               
               <div className="mb-6">
-                <label htmlFor="message" className="block mb-2 text-sm font-medium">
+                <Label htmlFor="message">
                   Your Message <span className="text-red-500">*</span>
-                </label>
+                </Label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-tvm-blue focus:border-transparent"
+                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
