@@ -1,10 +1,16 @@
 
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { Resend } from "npm:resend@1.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.1.1";
 
-// Get the API key from environment variable
+// Get environment variables
 const resendApiKey = Deno.env.get('RESEND_API_KEY');
 const toEmail = Deno.env.get('TO_EMAIL') || 'mayurbodkhe7918@gmail.com'; // Default fallback
+const supabaseUrl = Deno.env.get('SUPABASE_URL') || '';
+const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '';
+
+// Initialize Supabase client with the service role key
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 // Initialize Resend with the API key
 const resend = new Resend(resendApiKey);
@@ -88,7 +94,38 @@ serve(async (req) => {
 
     const { name, email, subject, message, phone } = requestData;
 
-    // Send the email using Resend
+    // 1. Store the submission in the database
+    console.log("Storing submission in database...");
+    const { data: submissionData, error: submissionError } = await supabase
+      .from('contact_submissions')
+      .insert([
+        { 
+          name, 
+          email, 
+          phone: phone || null,
+          subject, 
+          message 
+        }
+      ]);
+
+    if (submissionError) {
+      console.error("Error storing submission:", submissionError);
+      return new Response(
+        JSON.stringify({ 
+          error: 'Failed to store submission', 
+          details: submissionError.message 
+        }),
+        {
+          status: 500,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        }
+      );
+    }
+
+    console.log("Submission stored successfully");
+
+    // 2. Send the email using Resend
+    console.log("Sending email...");
     const emailResponse = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>',
       to: toEmail,
@@ -110,7 +147,9 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'Contact form submitted successfully' 
+        message: 'Contact form submitted successfully',
+        emailSent: !!emailResponse,
+        submissionStored: true
       }),
       {
         status: 200,
