@@ -26,19 +26,7 @@ const defaultTeamMembers = [
     role: "Founder & CEO",
     bio: "Mayur is a visionary leader with extensive experience in IT solutions and business strategy. He founded TVM IT Solutions with the goal of helping businesses leverage technology for growth.",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-  },
-  {
-    name: "Tejas Kale",
-    role: "CTO & Lead Developer",
-    bio: "Tejas leads our technical team with his exceptional coding skills and innovation in mobile and web development. He ensures our solutions are cutting-edge and reliable.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-  },
-  {
-    name: "Vijay Kakde",
-    role: "Marketing Director",
-    bio: "Vijay brings his expertise in digital marketing and influencer strategies to help our clients maximize their online presence and reach their target audiences effectively.",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-  },
+  }
 ];
 
 const OurTeam = ({ teamMembers = defaultTeamMembers }: OurTeamProps) => {
