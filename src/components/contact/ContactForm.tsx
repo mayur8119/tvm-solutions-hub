@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [formData, setFormData] = useState({
     name: "",
@@ -20,11 +22,11 @@ const ContactForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !formData.message || !formData.subject) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -33,22 +35,49 @@ const ContactForm = () => {
       return;
     }
 
-    // Submit form - in a real app, this would send data to a server
-    console.log("Contact form data submitted:", formData);
-    
-    toast({
-      title: "Message Sent",
-      description: "Thank you for contacting us! We'll get back to you soon.",
-    });
+    try {
+      setIsSubmitting(true);
+      
+      // Call the Supabase edge function
+      const { data, error } = await supabase.functions.invoke('contact-form', {
+        body: formData,
+      });
+      
+      if (error) {
+        console.error("Error submitting form:", error);
+        toast({
+          title: "Error",
+          description: "Failed to submit the form. Please try again later.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      console.log("Form submission response:", data);
+      
+      toast({
+        title: "Message Sent",
+        description: "Thank you for contacting us! We'll get back to you soon.",
+      });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -166,7 +195,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <label htmlFor="subject" className="block mb-2 text-sm font-medium">
-                    Subject
+                    Subject <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -175,6 +204,7 @@ const ContactForm = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-tvm-blue focus:border-transparent"
+                    required
                   />
                 </div>
               </div>
@@ -194,8 +224,13 @@ const ContactForm = () => {
                 />
               </div>
               
-              <Button type="submit" size="lg" className="w-full md:w-auto">
-                Send Message
+              <Button 
+                type="submit" 
+                size="lg" 
+                className="w-full md:w-auto"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
