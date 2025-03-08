@@ -98,7 +98,7 @@ const ContactForm = () => {
                 <Phone className="flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h3 className="font-medium">Phone</h3>
-                  <p className="text-blue-100">+91 9309917269 / +91 9730031264</p>
+                  <p className="text-blue-100">+91 9309917269</p>
                 </div>
               </div>
               
@@ -106,7 +106,7 @@ const ContactForm = () => {
                 <Mail className="flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h3 className="font-medium">Email</h3>
-                  <p className="text-blue-100">mayurbodkhe7918@gmail.com</p>
+                  <p className="text-blue-100">futuretech@tvmitsolution.com</p>
                 </div>
               </div>
               

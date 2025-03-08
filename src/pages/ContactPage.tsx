@@ -13,8 +13,8 @@ const ContactPage = () => {
       <div className="container-custom py-16">
         <MapSection 
           address="Chandan Apartment, Rana Nagar, Seven Hills, CIDCO, Aurangabad, Maharashtra, India"
-          phone="+91 9309917269 / +91 9730031264"
-          email="mayurbodkhe7918@gmail.com"
+          phone="+91 9309917269"
+          email="futuretech@tvmitsolution.com"
         />
       </div>
       <Toaster />
