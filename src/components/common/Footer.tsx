@@ -6,16 +6,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-tvm-blue text-white">
+    <footer className="bg-tvm-darkBlue text-white">
       <div className="container-custom pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center mb-4">
+            <div className="flex justify-center md:justify-start mb-6">
               <img 
                 src="/lovable-uploads/d3c6ba39-b736-4a64-9d5f-2236e85b3f83.png" 
                 alt="TVM IT Solutions Logo" 
-                className="h-24 w-auto" 
+                className="h-28 w-auto" 
               />
             </div>
             <p className="text-gray-200 mb-4">
@@ -108,7 +108,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-white flex-shrink-0" />
-                <span className="text-gray-200">+91 9309917269 / +91 9730031264</span>
+                <span className="text-gray-200">+91 9309917269</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-white flex-shrink-0" />
