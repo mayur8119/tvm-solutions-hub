@@ -8,16 +8,10 @@ const Footer = () => {
   return (
     <footer className="bg-tvm-darkBlue text-white">
       <div className="container-custom pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex justify-center md:justify-start mb-6">
-              <img 
-                src="/lovable-uploads/d3c6ba39-b736-4a64-9d5f-2236e85b3f83.png" 
-                alt="TVM IT Solutions Logo" 
-                className="h-28 w-auto" 
-              />
-            </div>
+            <h4 className="text-lg font-medium mb-4">About Us</h4>
             <p className="text-gray-200 mb-4">
               Transforming businesses through innovative IT solutions and cutting-edge technologies.
             </p>
@@ -64,33 +58,6 @@ const Footer = () => {
               <li>
                 <Link to="/contact" className="text-gray-200 hover:text-white transition-colors">
                   Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-medium mb-4">Our Services</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/services#android" className="text-gray-200 hover:text-white transition-colors">
-                  Android App Development
-                </Link>
-              </li>
-              <li>
-                <Link to="/services#website" className="text-gray-200 hover:text-white transition-colors">
-                  Website Development
-                </Link>
-              </li>
-              <li>
-                <Link to="/services#digital" className="text-gray-200 hover:text-white transition-colors">
-                  Digital Marketing
-                </Link>
-              </li>
-              <li>
-                <Link to="/services#influencer" className="text-gray-200 hover:text-white transition-colors">
-                  Influencer Marketing
                 </Link>
               </li>
             </ul>
