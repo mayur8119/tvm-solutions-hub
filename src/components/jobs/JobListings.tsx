@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { jobListings, jobCategories, experienceLevels } from "@/data/jobListings";
 import { Job, ExperienceLevel } from "@/types/job";
 import SectionHeading from "@/components/common/SectionHeading";
@@ -8,14 +8,51 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Filter, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 
 const JobListings = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedExperience, setSelectedExperience] = useState("All Levels");
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  // For now, we're using the static data, but this is prepared for future backend integration
+  const [jobs, setJobs] = useState<Job[]>(jobListings);
 
-  const filteredJobs = jobListings.filter((job) => {
+  // This will be used when connecting to the backend
+  const fetchJobs = async () => {
+    // This function is prepared for future backend integration
+    // Currently, it's using the static data
+    setIsLoading(true);
+    
+    try {
+      // Future backend integration code will go here
+      // For now, we simulate fetching from the backend
+      console.log("Ready for backend integration - currently using static data");
+      
+      // Simulate backend delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Currently using static data
+      setJobs(jobListings);
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+      toast({
+        title: "Error",
+        description: "Failed to load job listings. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const filteredJobs = jobs.filter((job) => {
     const matchesCategory = selectedCategory === "All Categories" || job.category === selectedCategory;
     const matchesExperience = selectedExperience === "All Levels" || job.experienceLevel === selectedExperience;
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -87,7 +124,21 @@ const JobListings = () => {
           )}
         </div>
 
-        {filteredJobs.length > 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((index) => (
+              <div key={index} className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                <div className="h-6 bg-gray-200 rounded mb-4 w-3/4"></div>
+                <div className="h-4 bg-gray-200 rounded mb-2 w-1/2"></div>
+                <div className="h-20 bg-gray-200 rounded mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
+                <div className="h-4 bg-gray-200 rounded mb-2 w-4/5"></div>
+                <div className="h-4 bg-gray-200 rounded mb-4 w-3/5"></div>
+                <div className="h-10 bg-gray-200 rounded w-full mt-6"></div>
+              </div>
+            ))}
+          </div>
+        ) : filteredJobs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredJobs.map((job) => (
               <JobCard key={job.id} job={job} />

@@ -21,26 +21,13 @@ const JobsHero = () => {
             Discover exciting career opportunities at TVM IT Solutions. We're looking for talented 
             individuals to help us shape the future of technology.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <div className="animate-fade-in" style={{ animationDelay: "0.4s" }}>
             <Button 
               size="lg" 
               className="bg-white text-tvm-blue hover:bg-blue-50"
               onClick={scrollToApplicationForm}
             >
               Apply Now <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-white text-white hover:bg-white/10"
-              onClick={() => {
-                const jobListings = document.getElementById("job-listings");
-                if (jobListings) {
-                  jobListings.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              View Open Positions
             </Button>
           </div>
         </div>
