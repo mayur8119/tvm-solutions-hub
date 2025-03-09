@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, User } from "lucide-react";
 import SectionHeading from "../common/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -8,27 +8,27 @@ import { Link } from "react-router-dom";
 const testimonials = [
   {
     id: 1,
-    name: "Priya Sharma",
-    role: "CEO, FutureTech Solutions",
-    testimonial: "Working with TVM IT Solutions transformed our business. Their Android app development services were exceptional, delivering a product that exceeded our expectations.",
+    name: "Rajesh Kumar",
+    role: "CTO, TechVision India",
+    testimonial: "TVM IT Solutions has been an outstanding partner for our digital transformation journey. Their Android app development team delivered a robust solution that has significantly improved our customer engagement metrics.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
   },
   {
     id: 2,
-    name: "Rahul Patel",
-    role: "Marketing Director, Innovative Startup",
-    testimonial: "The digital marketing strategy implemented by TVM IT Solutions helped us increase our online presence significantly. Their team was professional, responsive, and results-driven.",
+    name: "Aisha Patel",
+    role: "Founder, GrowthXcel Marketing",
+    testimonial: "The digital marketing strategy implemented by TVM IT Solutions doubled our online conversions within three months. Their data-driven approach and continuous optimization made all the difference for our business.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
   },
   {
     id: 3,
-    name: "Ananya Desai",
-    role: "Owner, Boutique Fashion",
-    testimonial: "The website developed by TVM IT Solutions for our boutique is not only visually stunning but also user-friendly. We've received numerous compliments from our customers about the improved online shopping experience.",
+    name: "Vikram Malhotra",
+    role: "Director, Sunshine Retail Group",
+    testimonial: "We approached TVM IT Solutions for our e-commerce website, and they exceeded our expectations. The user experience is seamless, and our customers love the intuitive design. Sales have increased by 45% since launch.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
   },
 ];
 
@@ -77,11 +77,9 @@ const TestimonialsSection = () => {
                     </div>
                     <p className="text-lg mb-6 text-gray-200 italic">"{testimonial.testimonial}"</p>
                     <div className="flex items-center space-x-4">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover border-2 border-tvm-blue"
-                      />
+                      <div className="w-12 h-12 rounded-full bg-tvm-blue/20 flex items-center justify-center">
+                        <User size={24} className="text-tvm-blue" />
+                      </div>
                       <div>
                         <h4 className="font-medium">{testimonial.name}</h4>
                         <p className="text-sm text-gray-300">{testimonial.role}</p>

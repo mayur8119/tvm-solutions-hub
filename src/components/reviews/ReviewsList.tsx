@@ -1,62 +1,62 @@
 
 import { useState } from "react";
-import { Star } from "lucide-react";
+import { Star, User } from "lucide-react";
 import SectionHeading from "../common/SectionHeading";
 import AnimatedCard from "../common/AnimatedCard";
 
 const initialReviews = [
   {
     id: 1,
-    name: "Priya Sharma",
-    company: "FutureTech Solutions",
-    testimonial: "Working with TVM IT Solutions transformed our business. Their Android app development services were exceptional, delivering a product that exceeded our expectations.",
+    name: "Rajesh Kumar",
+    company: "TechVision India",
+    testimonial: "TVM IT Solutions has been an outstanding partner for our digital transformation journey. Their Android app development team delivered a robust solution that has significantly improved our customer engagement metrics.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
     service: "Android App Development",
   },
   {
     id: 2,
-    name: "Rahul Patel",
-    company: "Innovative Startup",
-    testimonial: "The digital marketing strategy implemented by TVM IT Solutions helped us increase our online presence significantly. Their team was professional, responsive, and results-driven.",
+    name: "Aisha Patel",
+    company: "GrowthXcel Marketing",
+    testimonial: "The digital marketing strategy implemented by TVM IT Solutions doubled our online conversions within three months. Their data-driven approach and continuous optimization made all the difference for our business.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
     service: "Digital Marketing",
   },
   {
     id: 3,
-    name: "Ananya Desai",
-    company: "Boutique Fashion",
-    testimonial: "The website developed by TVM IT Solutions for our boutique is not only visually stunning but also user-friendly. We've received numerous compliments from our customers about the improved online shopping experience.",
+    name: "Vikram Malhotra",
+    company: "Sunshine Retail Group",
+    testimonial: "We approached TVM IT Solutions for our e-commerce website, and they exceeded our expectations. The user experience is seamless, and our customers love the intuitive design. Sales have increased by 45% since launch.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
     service: "Website Development",
   },
   {
     id: 4,
-    name: "Vikram Singh",
-    company: "Health & Wellness",
-    testimonial: "TVM IT Solutions helped us connect with relevant influencers in the health and wellness sector, which significantly increased our brand awareness and customer engagement. Their approach was strategic and effective.",
-    rating: 4,
-    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    name: "Meera Sharma",
+    company: "Wellness Connect",
+    testimonial: "The influencer marketing campaign designed by TVM IT Solutions helped us reach our target demographic with precision. Their strategic approach and network of partnerships delivered exceptional ROI for our wellness products.",
+    rating: 5,
+    hasPhoto: false,
     service: "Influencer Marketing",
   },
   {
     id: 5,
-    name: "Neha Joshi",
-    company: "Educational Platform",
-    testimonial: "We needed a comprehensive Android app for our educational platform, and TVM IT Solutions delivered beyond our expectations. The app is intuitive, feature-rich, and has been instrumental in expanding our reach.",
+    name: "Arjun Singh",
+    company: "EduTech Innovations",
+    testimonial: "Our educational app developed by TVM IT Solutions has received outstanding feedback from students and teachers alike. The intuitive interface and performance optimization have made it a valuable tool in our educational ecosystem.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
     service: "Android App Development",
   },
   {
     id: 6,
-    name: "Arjun Mehta",
-    company: "Local Restaurant Chain",
-    testimonial: "The website development and digital marketing services provided by TVM IT Solutions have been game-changers for our restaurant chain. We've seen a significant increase in online orders and customer engagement.",
+    name: "Priyanka Joshi",
+    company: "Spice Route Restaurants",
+    testimonial: "The comprehensive digital strategy implemented by TVM IT Solutions revolutionized our restaurant chain's online presence. From our website to digital marketing campaigns, every aspect has contributed to our growth.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    hasPhoto: false,
     service: "Website Development, Digital Marketing",
   },
 ];
@@ -112,11 +112,9 @@ const ReviewsList = () => {
                 </div>
                 <p className="text-tvm-gray mb-6 flex-grow">{review.testimonial}</p>
                 <div className="flex items-center space-x-4">
-                  <img
-                    src={review.image}
-                    alt={review.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                  <div className="w-12 h-12 rounded-full bg-tvm-blue/10 flex items-center justify-center">
+                    <User size={20} className="text-tvm-blue" />
+                  </div>
                   <div>
                     <h4 className="font-medium">{review.name}</h4>
                     <p className="text-sm text-tvm-gray">{review.company}</p>
