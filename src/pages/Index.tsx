@@ -5,11 +5,13 @@ import ServicesSection from "@/components/home/ServicesSection";
 import AboutPreview from "@/components/home/AboutPreview";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
+import TechGlobe from "@/components/home/TechGlobe";
 
 const Index = () => {
   return (
     <PageLayout>
       <HeroSection />
+      <TechGlobe />
       <ServicesSection />
       <AboutPreview />
       <TestimonialsSection />

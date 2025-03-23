@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden" aria-label="Hero Section">
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden" aria-label="Hero Section">
       {/* Background Elements - Enhanced with blue color scheme to match logo */}
       <div className="absolute inset-0 -z-10 opacity-30">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full filter blur-3xl"></div>
