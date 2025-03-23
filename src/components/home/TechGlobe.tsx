@@ -32,6 +32,9 @@ const TechGlobe = () => {
   return (
     <AnimatedCard className="my-16">
       <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-purple-900/50 z-0" />
+        
         <Canvas
           camera={{ position: [0, 0, 3], fov: 45 }}
           dpr={[1, 1.5]} // Lower DPR for better performance
