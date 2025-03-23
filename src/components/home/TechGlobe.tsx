@@ -1,11 +1,11 @@
 
 import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import { OrbitControls, Sphere } from '@react-three/drei';
 import { Mesh } from 'three';
 import AnimatedCard from '../common/AnimatedCard';
 
-// The animated sphere component with simplified props and animation
+// Simplified animated sphere component with basic material instead of distort material
 const AnimatedSphere = () => {
   const meshRef = useRef<Mesh>(null);
   
@@ -18,23 +18,24 @@ const AnimatedSphere = () => {
 
   return (
     <Sphere args={[1, 32, 32]} ref={meshRef}>
-      <MeshDistortMaterial 
+      <meshStandardMaterial 
         color="#3B82F6" 
-        attach="material" 
-        distort={0.3} 
-        speed={1.5} 
         roughness={0.5}
+        metalness={0.2}
       />
     </Sphere>
   );
 };
 
-// The main component with simplified Three.js setup
+// The main component with simplified Three.js setup and error handling
 const TechGlobe = () => {
   return (
     <AnimatedCard className="my-16">
       <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden">
-        <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 3], fov: 45 }}>
+        <Canvas
+          camera={{ position: [0, 0, 3], fov: 45 }}
+          dpr={[1, 1.5]} // Lower DPR for better performance
+        >
           <ambientLight intensity={0.5} />
           <directionalLight position={[5, 5, 5]} intensity={1} />
           <AnimatedSphere />

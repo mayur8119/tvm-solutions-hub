@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense, ErrorBoundary } from "react";
 import PageLayout from "@/components/common/PageLayout";
 import HeroSection from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
@@ -7,6 +7,38 @@ import AboutPreview from "@/components/home/AboutPreview";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
 import TechGlobe from "@/components/home/TechGlobe";
+
+// Simple fallback component when the 3D globe fails to load
+const GlobeFallback = () => (
+  <div className="w-full h-48 my-16 flex items-center justify-center">
+    <div className="animate-pulse bg-blue-100 rounded-lg w-full h-full flex items-center justify-center">
+      <p className="text-blue-800">Loading 3D visualization...</p>
+    </div>
+  </div>
+);
+
+// Simple error boundary component
+class Globe3DErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      console.log("3D Globe failed to load, showing fallback");
+      return <GlobeFallback />;
+    }
+    return this.props.children;
+  }
+}
 
 const Index = () => {
   const [showGlobe, setShowGlobe] = useState(false);
@@ -23,7 +55,13 @@ const Index = () => {
   return (
     <PageLayout>
       <HeroSection />
-      {showGlobe && <TechGlobe />}
+      {showGlobe && (
+        <Globe3DErrorBoundary>
+          <Suspense fallback={<GlobeFallback />}>
+            <TechGlobe />
+          </Suspense>
+        </Globe3DErrorBoundary>
+      )}
       <ServicesSection />
       <AboutPreview />
       <TestimonialsSection />
