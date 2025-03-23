@@ -1,5 +1,5 @@
 
-import { useState, useEffect, Suspense, ErrorBoundary } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import PageLayout from "@/components/common/PageLayout";
 import HeroSection from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
