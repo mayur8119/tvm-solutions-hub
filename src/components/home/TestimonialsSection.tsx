@@ -30,6 +30,22 @@ const testimonials = [
     rating: 5,
     hasPhoto: false,
   },
+  {
+    id: 4,
+    name: "Priya Sharma",
+    role: "CEO, InnovateIndia Solutions",
+    testimonial: "The SEO services provided by TVM IT Solutions transformed our online presence. Our website now ranks on the first page for all our target keywords, bringing in substantial leads every month at an affordable cost.",
+    rating: 5,
+    hasPhoto: false,
+  },
+  {
+    id: 5,
+    name: "Arjun Mehta",
+    role: "Managing Director, Sparkle Retail",
+    testimonial: "What impressed me most about TVM IT Solutions was their quick turnaround time. They delivered our complete website with e-commerce functionality in just three weeks, without compromising on quality or features.",
+    rating: 5,
+    hasPhoto: false,
+  },
 ];
 
 const TestimonialsSection = () => {
@@ -44,7 +60,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="section-padding bg-tvm-darkGray text-white relative">
+    <section id="testimonials" className="section-padding bg-tvm-darkGray text-white relative">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-tvm-darkGray to-tvm-darkBlue opacity-40 -z-10"></div>
       
@@ -98,6 +114,7 @@ const TestimonialsSection = () => {
               size="icon"
               onClick={prevTestimonial}
               className="bg-white/10 hover:bg-white/20 border-white/20 text-white"
+              aria-label="Previous testimonial"
             >
               <ChevronLeft size={18} />
             </Button>
@@ -116,11 +133,32 @@ const TestimonialsSection = () => {
               size="icon"
               onClick={nextTestimonial}
               className="bg-white/10 hover:bg-white/20 border-white/20 text-white"
+              aria-label="Next testimonial"
             >
               <ChevronRight size={18} />
             </Button>
           </div>
         </div>
+
+        {/* Schema markup for reviews (hidden) */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "TVM IT Solutions",
+          "review": testimonials.map(t => ({
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": t.rating,
+              "bestRating": "5"
+            },
+            "author": {
+              "@type": "Person",
+              "name": t.name
+            },
+            "reviewBody": t.testimonial
+          }))
+        })}} />
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
