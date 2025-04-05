@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -74,6 +73,10 @@
     @apply border-border;
   }
 
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
+  }
+
   html, body {
     @apply scroll-smooth;
   }
@@ -84,6 +87,7 @@
       radial-gradient(circle at 25% 10%, rgba(124, 58, 237, 0.03) 0%, transparent 40%),
       radial-gradient(circle at 75% 90%, rgba(59, 130, 246, 0.03) 0%, transparent 40%);
     background-attachment: fixed;
+    text-rendering: optimizeSpeed;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -91,19 +95,23 @@
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
+    @apply text-2xl md:text-3xl lg:text-4xl leading-tight;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-xl md:text-2xl leading-tight;
+  }
+
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-tvm-blue focus:shadow-lg focus:rounded;
   }
 
   a {
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-200 underline-offset-2 focus:outline-offset-4;
   }
 }
 
@@ -121,7 +129,7 @@
   }
   
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 md:py-16 lg:py-24;
   }
   
   .button-animation {
@@ -161,19 +169,21 @@
 .stagger-animation > * {
   opacity: 0;
   transform: translateY(20px);
+  will-change: opacity, transform;
 }
 
-.stagger-animation > *:nth-child(1) { animation-delay: 0s; }
-.stagger-animation > *:nth-child(2) { animation-delay: 0.1s; }
-.stagger-animation > *:nth-child(3) { animation-delay: 0.2s; }
-.stagger-animation > *:nth-child(4) { animation-delay: 0.3s; }
-.stagger-animation > *:nth-child(5) { animation-delay: 0.4s; }
-.stagger-animation > *:nth-child(6) { animation-delay: 0.5s; }
+.stagger-animation > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-animation > *:nth-child(2) { animation-delay: 50ms; }
+.stagger-animation > *:nth-child(3) { animation-delay: 100ms; }
+.stagger-animation > *:nth-child(4) { animation-delay: 150ms; }
+.stagger-animation > *:nth-child(5) { animation-delay: 200ms; }
+.stagger-animation > *:nth-child(6) { animation-delay: 250ms; }
 
-/* Image reveal animation */
+/* Image reveal animation - optimized */
 .image-reveal {
   clip-path: inset(0 100% 0 0);
-  animation: reveal 1s ease forwards;
+  animation: reveal 0.8s ease forwards;
+  will-change: clip-path;
 }
 
 @keyframes reveal {
@@ -182,20 +192,53 @@
   }
 }
 
-/* Pulse glow animation for tech elements */
+/* Reduce animation work for performance */
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 0.5;
-    transform: scale(1);
+    transform: translateZ(0);
   }
   50% {
     opacity: 0.8;
-    transform: scale(1.05);
+    transform: translateZ(0) scale(1.05);
   }
 }
 
 .pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Native lazyloading support */
+img.lazy {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+img.lazy.loaded {
+  opacity: 1;
+}
+
+/* Print styles for better accessibility */
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Custom scrollbar */

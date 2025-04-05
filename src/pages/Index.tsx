@@ -6,13 +6,16 @@ import ServicesSection from "@/components/home/ServicesSection";
 import AboutPreview from "@/components/home/AboutPreview";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
-import TechGlobe from "@/components/home/TechGlobe";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Lazy load the 3D component
+const TechGlobe = React.lazy(() => import("@/components/home/TechGlobe"));
 
 // Simple fallback component when the 3D globe fails to load
 const GlobeFallback = () => (
-  <div className="w-full h-48 my-16 flex items-center justify-center">
-    <div className="animate-pulse bg-blue-100 rounded-lg w-full h-full flex items-center justify-center">
-      <p className="text-blue-800">Loading 3D visualization...</p>
+  <div className="w-full my-16">
+    <div className="container-custom">
+      <Skeleton className="w-full h-72 md:h-96 rounded-lg" />
     </div>
   </div>
 );
@@ -45,11 +48,17 @@ const Index = () => {
   
   // Delay loading the 3D component to ensure the main content loads first
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowGlobe(true);
-    }, 1000);
+    // Use requestIdleCallback or setTimeout as a fallback
+    const loadGlobe = () => setShowGlobe(true);
     
-    return () => clearTimeout(timer);
+    if ('requestIdleCallback' in window) {
+      // @ts-ignore - TypeScript doesn't have the type for requestIdleCallback
+      window.requestIdleCallback(loadGlobe, { timeout: 2000 });
+    } else {
+      // Fallback for browsers that don't support requestIdleCallback
+      const timer = setTimeout(loadGlobe, 1500);
+      return () => clearTimeout(timer);
+    }
   }, []);
   
   return (

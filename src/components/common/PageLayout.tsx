@@ -276,14 +276,20 @@ const PageLayout = ({
         <meta name="geo.position" content="19.8762;75.3433" />
         <meta name="ICBM" content="19.8762, 75.3433" />
         
-        {/* Additional SEO meta tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" href="/lovable-uploads/01123e7f-efe0-421e-bdf0-ebb3162d694e.png" as="image" />
+        
+        <meta http-equiv="Cache-Control" content="max-age=86400" />
+        
         <meta name="revisit-after" content="7 days" />
         <meta name="distribution" content="Global" />
         <meta name="rating" content="General" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         
-        {/* Schema markup */}
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>
@@ -304,7 +310,7 @@ const PageLayout = ({
         </script>
       </Helmet>
       <Navigation />
-      <main className={`flex-grow ${className}`}>{children}</main>
+      <main className={`flex-grow ${className}`} id="main-content">{children}</main>
       <Footer />
       <PromotionPopup />
     </div>

@@ -2,8 +2,18 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const HeroSection = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Preload the hero image
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/lovable-uploads/01123e7f-efe0-421e-bdf0-ebb3162d694e.png";
+    img.onload = () => setImageLoaded(true);
+  }, []);
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden" aria-label="Hero Section">
       {/* Background Elements - Enhanced with blue color scheme to match logo */}
@@ -20,7 +30,7 @@ const HeroSection = () => {
             <span className="inline-block px-3 py-1 mb-6 text-xs font-semibold bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 text-white rounded-full animate-fade-in">
               Next-Gen IT Solutions
             </span>
-            <h1 className="mb-6 animate-fade-in">
+            <h1 className="mb-6 animate-fade-in text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight">
               Transform Your Business With
               <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-400 bg-clip-text text-transparent"> Future-Ready Technology</span>
             </h1>
@@ -42,14 +52,22 @@ const HeroSection = () => {
           {/* Image - Updated with the new futuristic tech image */}
           <div className="w-full lg:w-1/2 relative animate-fade-in">
             <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl image-reveal">
-              <img 
-                src="/lovable-uploads/01123e7f-efe0-421e-bdf0-ebb3162d694e.png" 
-                alt="Digital Innovation Technology solutions by TVM IT Solutions" 
-                className="w-full h-auto object-cover"
-                width="600"
-                height="400"
-                loading="eager"
-              />
+              <div className={`min-h-[300px] ${!imageLoaded ? 'bg-slate-200 animate-pulse' : ''}`}>
+                <img 
+                  src="/lovable-uploads/01123e7f-efe0-421e-bdf0-ebb3162d694e.png" 
+                  alt="Digital Innovation Technology solutions by TVM IT Solutions" 
+                  className="w-full h-auto object-cover"
+                  width="600"
+                  height="400"
+                  loading="eager"
+                  onLoad={() => setImageLoaded(true)}
+                  style={{ 
+                    opacity: imageLoaded ? 1 : 0, 
+                    transition: 'opacity 0.3s ease-in-out',
+                    aspectRatio: '600/400',
+                  }}
+                />
+              </div>
             </div>
             {/* Decorative elements - Updated with colors to match logo */}
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/10 rounded-lg -z-10 animate-pulse" aria-hidden="true"></div>
