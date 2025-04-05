@@ -16,16 +16,16 @@ const Footer = () => {
               Transforming businesses through innovative IT solutions and cutting-edge technologies.
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
+              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="Facebook">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
+              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="Twitter">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
+              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="Instagram">
                 <Instagram size={18} />
               </a>
-              <a href="https://www.linkedin.com/in/tvm-it-solutions-91544a355" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
+              <a href="https://www.linkedin.com/in/tvm-it-solutions-91544a355" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="LinkedIn">
                 <Linkedin size={18} />
               </a>
             </div>
@@ -91,10 +91,10 @@ const Footer = () => {
             <p className="text-gray-200 text-sm mb-4 md:mb-0">
               &copy; {currentYear} TVM IT Solutions. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-200 hover:text-white transition-colors">
+            <div className="flex flex-wrap gap-4 text-sm">
+              <Link to="/privacy-policy" className="text-gray-200 hover:text-white transition-colors">
                 Privacy Policy
-              </a>
+              </Link>
               <a href="#" className="text-gray-200 hover:text-white transition-colors">
                 Terms of Service
               </a>

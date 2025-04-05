@@ -8,14 +8,21 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Lazy load the 3D component
-const TechGlobe = React.lazy(() => import("@/components/home/TechGlobe"));
+// Lazy load the 3D component with a more descriptive comment
+const TechGlobe = React.lazy(() => 
+  import("@/components/home/TechGlobe" /* webpackChunkName: "tech-globe" */)
+);
 
-// Simple fallback component when the 3D globe fails to load
+// Enhanced fallback component when the 3D globe is loading
 const GlobeFallback = () => (
   <div className="w-full my-16">
     <div className="container-custom">
-      <Skeleton className="w-full h-72 md:h-96 rounded-lg" />
+      <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900">
+        <Skeleton className="w-full h-full absolute inset-0 bg-blue-900/30" />
+        <div className="absolute top-0 left-0 w-full p-6 z-10 text-center">
+          <div className="bg-white/10 w-48 h-8 mx-auto rounded-md animate-pulse"></div>
+        </div>
+      </div>
     </div>
   </div>
 );
@@ -34,9 +41,13 @@ class Globe3DErrorBoundary extends React.Component<
     return { hasError: true };
   }
 
+  componentDidCatch(error: Error) {
+    console.log("3D Globe failed to load, showing fallback");
+    console.error(error);
+  }
+
   render() {
     if (this.state.hasError) {
-      console.log("3D Globe failed to load, showing fallback");
       return <GlobeFallback />;
     }
     return this.props.children;
@@ -46,19 +57,13 @@ class Globe3DErrorBoundary extends React.Component<
 const Index = () => {
   const [showGlobe, setShowGlobe] = useState(false);
   
-  // Delay loading the 3D component to ensure the main content loads first
+  // Improved idle callback with clear timing
   useEffect(() => {
-    // Use requestIdleCallback or setTimeout as a fallback
     const loadGlobe = () => setShowGlobe(true);
     
-    if ('requestIdleCallback' in window) {
-      // @ts-ignore - TypeScript doesn't have the type for requestIdleCallback
-      window.requestIdleCallback(loadGlobe, { timeout: 2000 });
-    } else {
-      // Fallback for browsers that don't support requestIdleCallback
-      const timer = setTimeout(loadGlobe, 1500);
-      return () => clearTimeout(timer);
-    }
+    // Load after a short delay to prioritize core content
+    const timer = setTimeout(loadGlobe, 1000);
+    return () => clearTimeout(timer);
   }, []);
   
   return (

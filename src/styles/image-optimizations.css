@@ -1,0 +1,63 @@
+
+/* Image optimization styles */
+
+/* Prevent layout shifts with proper aspect ratios */
+.aspect-ratio-container {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+}
+
+.aspect-ratio-16-9 {
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.aspect-ratio-4-3 {
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+}
+
+.aspect-ratio-1-1 {
+  padding-bottom: 100%; /* 1:1 aspect ratio (square) */
+}
+
+.aspect-ratio-3-2 {
+  padding-bottom: 66.67%; /* 3:2 aspect ratio */
+}
+
+/* Progressive image loading */
+.progressive-image {
+  transition: filter 0.3s, opacity 0.3s;
+}
+
+.progressive-image-loading {
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+/* Prevent cumulative layout shift */
+.image-container {
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Animation optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse {
+    animation: none;
+  }
+  .animate-fade-in {
+    opacity: 1;
+    animation: none;
+  }
+  .animate-slide-in {
+    transform: none;
+    animation: none;
+  }
+}
+
+/* High-contrast mode support */
+@media (forced-colors: active) {
+  .image-container img {
+    forced-color-adjust: none;
+  }
+}

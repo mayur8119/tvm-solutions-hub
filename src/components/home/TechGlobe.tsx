@@ -1,5 +1,5 @@
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere } from '@react-three/drei';
 import { Mesh } from 'three';
@@ -31,30 +31,40 @@ const AnimatedSphere = () => {
 // The main component with simplified Three.js setup and error handling
 const TechGlobe = () => {
   const isMobile = useIsMobile();
+  const [canvasLoaded, setCanvasLoaded] = useState(false);
   
+  // Set up canvas loaded state
+  useEffect(() => {
+    setCanvasLoaded(true);
+  }, []);
+
   return (
     <AnimatedCard className="my-16">
       <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden">
-        {/* Solid background instead of gradient for better performance */}
-        <div className="absolute inset-0 bg-blue-900/90 z-0" />
+        {/* Enhanced background with gradient */}
+        <div 
+          className="absolute inset-0 bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900 z-0"
+          aria-hidden="true"
+        />
         
-        <Canvas
-          camera={{ position: [0, 0, 3], fov: isMobile ? 55 : 45 }}
-          dpr={[1, 1.5]} // Lower DPR for better performance
-          performance={{ min: 0.5 }} // Performance optimization setting
-        >
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[5, 5, 5]} intensity={1} />
-          <AnimatedSphere />
-          <OrbitControls 
-            enableZoom={false} 
-            autoRotate 
-            autoRotateSpeed={0.5} 
-            enablePan={false}
-            minPolarAngle={Math.PI / 4}
-            maxPolarAngle={Math.PI / 1.5}
-          />
-        </Canvas>
+        {canvasLoaded && (
+          <Canvas
+            camera={{ position: [0, 0, 3], fov: isMobile ? 55 : 45 }}
+            dpr={[1, 1.5]} // Lower DPR for better performance
+          >
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+            <AnimatedSphere />
+            <OrbitControls 
+              enableZoom={false} 
+              autoRotate 
+              autoRotateSpeed={0.5} 
+              enablePan={false}
+              minPolarAngle={Math.PI / 4}
+              maxPolarAngle={Math.PI / 1.5}
+            />
+          </Canvas>
+        )}
         <div className="absolute top-0 left-0 w-full p-6 z-10 text-center">
           <h2 className="text-xl font-bold text-white drop-shadow-lg">
             Future Ready Technology
