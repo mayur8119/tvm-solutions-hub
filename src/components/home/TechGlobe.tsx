@@ -1,10 +1,9 @@
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere } from '@react-three/drei';
 import { Mesh } from 'three';
 import AnimatedCard from '../common/AnimatedCard';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 // Simplified animated sphere component with basic material instead of distort material
 const AnimatedSphere = () => {
@@ -23,8 +22,6 @@ const AnimatedSphere = () => {
         color="#3B82F6" 
         roughness={0.5}
         metalness={0.2}
-        emissive="#1E40AF"
-        emissiveIntensity={0.2}
       />
     </Sphere>
   );
@@ -32,45 +29,30 @@ const AnimatedSphere = () => {
 
 // The main component with simplified Three.js setup and error handling
 const TechGlobe = () => {
-  const isMobile = useIsMobile();
-  const [canvasLoaded, setCanvasLoaded] = useState(false);
-  
-  // Set up canvas loaded state
-  useEffect(() => {
-    setCanvasLoaded(true);
-  }, []);
-
   return (
     <AnimatedCard className="my-16">
       <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden">
-        {/* Enhanced background with gradient that works in both light and dark mode */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900 dark:from-blue-950 dark:via-indigo-950 dark:to-purple-950 z-0"
-          aria-hidden="true"
-        />
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-purple-900/50 z-0" />
         
-        {canvasLoaded && (
-          <Canvas
-            camera={{ position: [0, 0, 3], fov: isMobile ? 55 : 45 }}
-            dpr={[1, 1.5]} // Lower DPR for better performance
-          >
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 5, 5]} intensity={1} />
-            <AnimatedSphere />
-            <OrbitControls 
-              enableZoom={false} 
-              autoRotate 
-              autoRotateSpeed={0.5} 
-              enablePan={false}
-              minPolarAngle={Math.PI / 4}
-              maxPolarAngle={Math.PI / 1.5}
-            />
-          </Canvas>
-        )}
+        <Canvas
+          camera={{ position: [0, 0, 3], fov: 45 }}
+          dpr={[1, 1.5]} // Lower DPR for better performance
+        >
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[5, 5, 5]} intensity={1} />
+          <AnimatedSphere />
+          <OrbitControls 
+            enableZoom={false} 
+            autoRotate 
+            autoRotateSpeed={0.5} 
+            enablePan={false}
+          />
+        </Canvas>
         <div className="absolute top-0 left-0 w-full p-6 z-10 text-center">
-          <h2 className="text-xl font-bold text-white drop-shadow-lg">
+          <h3 className="text-xl font-bold text-white drop-shadow-lg">
             Future Ready Technology
-          </h2>
+          </h3>
         </div>
       </div>
     </AnimatedCard>

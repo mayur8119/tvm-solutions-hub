@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-tvm-darkBlue text-white dark:bg-gray-900">
+    <footer className="bg-tvm-darkBlue text-white">
       <div className="container-custom pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Company Info */}
@@ -16,16 +16,16 @@ const Footer = () => {
               Transforming businesses through innovative IT solutions and cutting-edge technologies.
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="Facebook">
+              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="Twitter">
+              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="Instagram">
+              <a href="#" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
                 <Instagram size={18} />
               </a>
-              <a href="https://www.linkedin.com/in/tvm-it-solutions-91544a355" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/tvm-it-solutions-91544a355" className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
                 <Linkedin size={18} />
               </a>
             </div>
@@ -60,11 +60,6 @@ const Footer = () => {
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link to="/privacy-policy" className="text-gray-200 hover:text-white transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -96,10 +91,10 @@ const Footer = () => {
             <p className="text-gray-200 text-sm mb-4 md:mb-0">
               &copy; {currentYear} TVM IT Solutions. All rights reserved.
             </p>
-            <div className="flex flex-wrap gap-4 text-sm">
-              <Link to="/privacy-policy" className="text-gray-200 hover:text-white transition-colors">
+            <div className="flex space-x-6 text-sm">
+              <a href="#" className="text-gray-200 hover:text-white transition-colors">
                 Privacy Policy
-              </Link>
+              </a>
               <a href="#" className="text-gray-200 hover:text-white transition-colors">
                 Terms of Service
               </a>
