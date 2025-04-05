@@ -63,7 +63,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+  
+  /* Improve image loading */
+  img {
+    @apply opacity-0 transition-opacity duration-500;
+  }
+  
+  img.loaded {
+    @apply opacity-100;
   }
 }
 
@@ -140,5 +149,12 @@
   body {
     color: #000;
     background: #fff;
+  }
+}
+
+/* Add image loading script */
+@layer utilities {
+  .img-loading-script {
+    content: "document.addEventListener('DOMContentLoaded', () => { const images = document.querySelectorAll('img[loading=\"lazy\"]'); const imgObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const img = entry.target; if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); } img.classList.add('loaded'); imgObserver.unobserve(img); } }); }); images.forEach(img => imgObserver.observe(img)); });";
   }
 }

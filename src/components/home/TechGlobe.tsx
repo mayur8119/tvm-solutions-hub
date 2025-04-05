@@ -23,6 +23,8 @@ const AnimatedSphere = () => {
         color="#3B82F6" 
         roughness={0.5}
         metalness={0.2}
+        emissive="#1E40AF"
+        emissiveIntensity={0.2}
       />
     </Sphere>
   );
@@ -41,9 +43,9 @@ const TechGlobe = () => {
   return (
     <AnimatedCard className="my-16">
       <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden">
-        {/* Enhanced background with gradient */}
+        {/* Enhanced background with gradient that works in both light and dark mode */}
         <div 
-          className="absolute inset-0 bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900 z-0"
+          className="absolute inset-0 bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900 dark:from-blue-950 dark:via-indigo-950 dark:to-purple-950 z-0"
           aria-hidden="true"
         />
         

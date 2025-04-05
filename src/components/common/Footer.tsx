@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-tvm-darkBlue text-white">
+    <footer className="bg-tvm-darkBlue text-white dark:bg-gray-900">
       <div className="container-custom pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Company Info */}
@@ -58,6 +58,11 @@ const Footer = () => {
               <li>
                 <Link to="/contact" className="text-gray-200 hover:text-white transition-colors">
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="text-gray-200 hover:text-white transition-colors">
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
