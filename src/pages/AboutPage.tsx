@@ -1,3 +1,4 @@
+
 import PageLayout from "@/components/common/PageLayout";
 import AboutHero from "@/components/about/AboutHero";
 import OurMission from "@/components/about/OurMission";
@@ -28,7 +29,7 @@ const AboutPage = () => {
             name: "Vijay Kakde",
             role: "Chief Financial Officer",
             bio: "Strategic financial leader with a strong background in technology sector finance. Oversees financial planning, risk management, and sustainable growth initiatives at TVM IT Solutions.",
-            image: "/lovable-uploads/36da966c-abbd-4da0-8ac2-cb5bd3a41438.png",
+            image: "/lovable-uploads/03d8a4a3-9ab6-4b53-b67c-48f1133fb74f.png",
             email: "cfo@tvmitsolutions.com",
             socialLinks: {
               linkedin: "https://linkedin.com"
