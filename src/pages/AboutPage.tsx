@@ -24,6 +24,16 @@ const AboutPage = () => {
               linkedin: "https://linkedin.com",
               github: "https://github.com"
             }
+          },
+          {
+            name: "Ajay Paliwal",
+            role: "Chief Financial Officer",
+            bio: "Strategic financial leader with a strong background in technology sector finance. Oversees financial planning, risk management, and sustainable growth initiatives at TVM IT Solutions.",
+            image: "/lovable-uploads/36da966c-abbd-4da0-8ac2-cb5bd3a41438.png",
+            email: "cfo@tvmitsolutions.com",
+            socialLinks: {
+              linkedin: "https://linkedin.com"
+            }
           }
         ]}
       />
