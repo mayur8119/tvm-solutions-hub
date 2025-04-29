@@ -92,9 +92,9 @@ const Footer = () => {
               &copy; {currentYear} TVM IT Solutions. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-200 hover:text-white transition-colors">
+              <Link to="/privacy-policy" className="text-gray-200 hover:text-white transition-colors">
                 Privacy Policy
-              </a>
+              </Link>
               <a href="#" className="text-gray-200 hover:text-white transition-colors">
                 Terms of Service
               </a>
