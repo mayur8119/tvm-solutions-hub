@@ -8,11 +8,11 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
 import TechGlobe from "@/components/home/TechGlobe";
 
-// Simple fallback component when the 3D globe fails to load
+// Simple fallback component when the 3D Android logo fails to load
 const GlobeFallback = () => (
   <div className="w-full h-48 my-16 flex items-center justify-center">
-    <div className="animate-pulse bg-blue-100 rounded-lg w-full h-full flex items-center justify-center">
-      <p className="text-blue-800">Loading 3D visualization...</p>
+    <div className="animate-pulse bg-green-100 rounded-lg w-full h-full flex items-center justify-center">
+      <p className="text-green-800">Loading Android 3D visualization...</p>
     </div>
   </div>
 );
@@ -33,7 +33,7 @@ class Globe3DErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      console.log("3D Globe failed to load, showing fallback");
+      console.log("3D Android logo failed to load, showing fallback");
       return <GlobeFallback />;
     }
     return this.props.children;
