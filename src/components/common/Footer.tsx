@@ -1,9 +1,11 @@
 
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { usePrivacyPolicy } from "@/context/PrivacyPolicyContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { openPrivacyPolicy } = usePrivacyPolicy();
 
   return (
     <footer className="bg-tvm-darkBlue text-white">
@@ -92,9 +94,12 @@ const Footer = () => {
               &copy; {currentYear} TVM IT Solutions. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link to="/privacy-policy" className="text-gray-200 hover:text-white transition-colors">
+              <button 
+                onClick={openPrivacyPolicy} 
+                className="text-gray-200 hover:text-white transition-colors cursor-pointer"
+              >
                 Privacy Policy
-              </Link>
+              </button>
               <Link to="/terms-of-service" className="text-gray-200 hover:text-white transition-colors">
                 Terms of Service
               </Link>

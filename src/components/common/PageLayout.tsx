@@ -1,8 +1,11 @@
+
 import { ReactNode } from "react";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import PromotionPopup from "./PromotionPopup";
 import { Helmet } from "react-helmet";
+import { PrivacyPolicyProvider } from "@/context/PrivacyPolicyContext";
+import PrivacyPolicyModal from "./PrivacyPolicyModal";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -263,51 +266,54 @@ const PageLayout = ({
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <meta name="author" content="TVM IT Solutions" />
-        <meta name="geo.region" content="IN-MH" />
-        <meta name="geo.placename" content="Aurangabad" />
-        <meta name="geo.position" content="19.8762;75.3433" />
-        <meta name="ICBM" content="19.8762, 75.3433" />
-        
-        {/* Additional SEO meta tags */}
-        <meta name="revisit-after" content="7 days" />
-        <meta name="distribution" content="Global" />
-        <meta name="rating" content="General" />
-        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        
-        {/* Schema markup */}
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(serviceSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(localBusinessSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(reviewSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(aggregateRatingSchema)}
-        </script>
-      </Helmet>
-      <Navigation />
-      <main className={`flex-grow ${className}`}>{children}</main>
-      <Footer />
-      <PromotionPopup />
-    </div>
+    <PrivacyPolicyProvider>
+      <div className="flex flex-col min-h-screen">
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={description} />
+          <meta name="keywords" content={keywords} />
+          <link rel="canonical" href={canonicalUrl} />
+          <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          <meta name="author" content="TVM IT Solutions" />
+          <meta name="geo.region" content="IN-MH" />
+          <meta name="geo.placename" content="Aurangabad" />
+          <meta name="geo.position" content="19.8762;75.3433" />
+          <meta name="ICBM" content="19.8762, 75.3433" />
+          
+          {/* Additional SEO meta tags */}
+          <meta name="revisit-after" content="7 days" />
+          <meta name="distribution" content="Global" />
+          <meta name="rating" content="General" />
+          <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          
+          {/* Schema markup */}
+          <script type="application/ld+json">
+            {JSON.stringify(organizationSchema)}
+          </script>
+          <script type="application/ld+json">
+            {JSON.stringify(serviceSchema)}
+          </script>
+          <script type="application/ld+json">
+            {JSON.stringify(localBusinessSchema)}
+          </script>
+          <script type="application/ld+json">
+            {JSON.stringify(breadcrumbSchema)}
+          </script>
+          <script type="application/ld+json">
+            {JSON.stringify(reviewSchema)}
+          </script>
+          <script type="application/ld+json">
+            {JSON.stringify(aggregateRatingSchema)}
+          </script>
+        </Helmet>
+        <Navigation />
+        <main className={`flex-grow ${className}`}>{children}</main>
+        <Footer />
+        <PromotionPopup />
+        <PrivacyPolicyModal />
+      </div>
+    </PrivacyPolicyProvider>
   );
 };
 
